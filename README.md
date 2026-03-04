@@ -10,7 +10,7 @@ Run `deno run build` and install `/bin/goto-bin` in your system.
 
 Copy the contents of `goto.fish` to your fish config.
 
-## Adding a path
+## How to use
 
 `goto add <name> [path]`. Add the specified path to goto. If no path is
 specified it will add the current path.
