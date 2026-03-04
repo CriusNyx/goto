@@ -1,7 +1,7 @@
 {
-  "nodeModulesDir": "manual",
   "tasks": {
-    "once": "deno run main.ts"
+    "once": "deno run --allow-env --allow-read --allow-sys --allow-write main.ts",
+    "build": "deno compile --allow-env --allow-read --allow-sys --allow-write -o bin/goto-bin main.ts"
   },
   "imports": {
     "@commander-js/extra-typings": "npm:@commander-js/extra-typings@^14.0.0",
@@ -9,9 +9,11 @@
     "@std/fs": "jsr:@std/fs@^1.0.23",
     "@std/path": "jsr:@std/path@^1.1.4",
     "@types/lodash": "npm:@types/lodash@^4.17.24",
+    "chalk": "npm:chalk@^5.6.2",
     "commander": "npm:commander@^14.0.3",
     "lodash": "npm:lodash@^4.17.23",
-    "platform-folders": "npm:platform-folders@^0.6.1"
+    "ts-results": "npm:ts-results@^3.3.0",
+    "tslib": "npm:tslib@^2.8.1"
   },
   "allowScripts": ["npm:platform-folders@0.6.1"]
 }

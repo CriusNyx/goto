@@ -7,9 +7,11 @@
     "jsr:@std/path@^1.1.4": "1.1.4",
     "npm:@commander-js/extra-typings@14": "14.0.0_commander@14.0.3",
     "npm:@types/lodash@^4.17.24": "4.17.24",
+    "npm:chalk@^5.6.2": "5.6.2",
     "npm:commander@^14.0.3": "14.0.3",
     "npm:lodash@^4.17.23": "4.17.23",
-    "npm:platform-folders@~0.6.1": "0.6.1"
+    "npm:ts-results@^3.3.0": "3.3.0",
+    "npm:tslib@^2.8.1": "2.8.1"
   },
   "jsr": {
     "@std/assert@1.0.19": {
@@ -45,27 +47,20 @@
     "@types/lodash@4.17.24": {
       "integrity": "sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ=="
     },
-    "bindings@1.5.0": {
-      "integrity": "sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==",
-      "dependencies": [
-        "file-uri-to-path"
-      ]
+    "chalk@5.6.2": {
+      "integrity": "sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA=="
     },
     "commander@14.0.3": {
       "integrity": "sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw=="
     },
-    "file-uri-to-path@1.0.0": {
-      "integrity": "sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw=="
-    },
     "lodash@4.17.23": {
       "integrity": "sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w=="
     },
-    "platform-folders@0.6.1": {
-      "integrity": "sha512-AapKWmRX09cfYv1AjQ4bCeiTcYsJuSIHwLYVqI5fnMrC2Q7ksF5WrcV25RwymUE/x2gdhAMsOLBZcgK6yqLUHQ==",
-      "dependencies": [
-        "bindings"
-      ],
-      "scripts": true
+    "ts-results@3.3.0": {
+      "integrity": "sha512-FWqxGX2NHp5oCyaMd96o2y2uMQmSu8Dey6kvyuFdRJ2AzfmWo3kWa4UsPlCGlfQ/qu03m09ZZtppMoY8EMHuiA=="
+    },
+    "tslib@2.8.1": {
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
     }
   },
   "workspace": {
@@ -75,9 +70,11 @@
       "jsr:@std/path@^1.1.4",
       "npm:@commander-js/extra-typings@14",
       "npm:@types/lodash@^4.17.24",
+      "npm:chalk@^5.6.2",
       "npm:commander@^14.0.3",
       "npm:lodash@^4.17.23",
-      "npm:platform-folders@~0.6.1"
+      "npm:ts-results@^3.3.0",
+      "npm:tslib@^2.8.1"
     ]
   }
 }

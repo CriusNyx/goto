@@ -1,0 +1,3 @@
+#!/bin/bash
+deno run build
+sudo install ./bin/goto-bin /usr/bin

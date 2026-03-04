@@ -1,8 +1,7 @@
-import { getConfigHome } from "platform-folders";
 import * as Path from "@std/path";
 import * as FS from "@std/fs";
-import { fileURLToPath } from "node:url";
-import { monitorEventLoopDelay } from "node:perf_hooks";
+import _ from "lodash";
+import { Option, Some, None } from "ts-results";
 
 const gotoConfigName = ".gotoConfig.json";
 
@@ -10,9 +9,16 @@ export interface ConfigFile {
   directories?: Partial<Record<string, string>>;
 }
 
+function getConfigFolder() {
+  return (
+    Deno.env.get("XDG_CONFIG_HOME") ??
+    Path.join(Deno.env.get("HOME") ?? "", "/.config")
+  );
+}
+
 export const Config = {
   getFilePath() {
-    return Path.join(getConfigHome(), gotoConfigName);
+    return Path.join(getConfigFolder(), gotoConfigName);
   },
   load(): ConfigFile {
     const configFilePath = this.getFilePath();
@@ -35,5 +41,19 @@ export const Config = {
       this.save(newConfig);
     }
     this.save(oldConfig);
+  },
+  resolveBasePath(base: string): Option<string> {
+    const config = this.load();
+    const result = _.get(config?.directories, base);
+    if (!!result) {
+      return Some(result);
+    }
+    return None;
+  },
+  resolvePath(path: string): Option<string> {
+    const [base, ...rest] = path.split("/");
+    return this.resolveBasePath(base).map((basePath) =>
+      Path.join(basePath, ...rest),
+    );
   },
 } as const;
