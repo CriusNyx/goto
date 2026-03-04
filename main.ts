@@ -2,7 +2,6 @@ import { program, Command } from "@commander-js/extra-typings";
 import { Config } from "./config.ts";
 import _ from "lodash";
 import chalk from "chalk";
-import { describe } from "node:test";
 
 const outputFilePath = "/tmp/goto.output";
 
