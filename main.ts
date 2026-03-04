@@ -2,6 +2,7 @@ import { program, Command } from "@commander-js/extra-typings";
 import { Config } from "./config.ts";
 import _ from "lodash";
 import chalk from "chalk";
+import { describe } from "node:test";
 
 const outputFilePath = "/tmp/goto.output";
 
@@ -52,6 +53,7 @@ const actions = {
     const resolved = Config.resolvePath(path).expect(
       generateFailedToResolveError(path),
     );
+    console.log(resolved);
     writeOutput(resolved);
   },
   add(...[name, path]: CommandArgs<typeof addCommand>) {
@@ -93,16 +95,32 @@ const actions = {
 type CommandArgs<CommandType extends Command<any, any, any>> =
   CommandType extends Command<infer Args, infer Opts> ? [...Args, Opts] : [];
 
-const addCommand = program.command("add <name> [path]").action(actions.add);
+const addCommand = program
+  .command("add <name> [path]")
+  .description("Add or replace a path with goto.")
+  .action(actions.add);
 
-const removeCommand = program.command("remove <name>").action(actions.remove);
+const removeCommand = program
+  .command("remove <name>")
+  .description("Remove a path from goto.")
+  .action(actions.remove);
 
-program.command("list").action(actions.list);
+program
+  .command("list")
+  .description("List all paths registered with goto.")
+  .action(actions.list);
 
 const defaultCommand = program
-  .option("--environment-variables")
-  .option("--completions")
-  .argument("[path]")
+  .name("goto")
+  .description(
+    "Utility program register predefined paths and jump around your operating system.",
+  )
+  .option(
+    "--environment-variables",
+    "Print fish command to register environment variables.",
+  )
+  .option("--completions", "Print completions to register with fish config.")
+  .argument("[path]", "Path to goto, starting with an entry in the goto table.")
   .action(actions.main);
 
 addCommand.processedArgs;
