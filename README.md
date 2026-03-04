@@ -8,7 +8,7 @@ Also generates environment variables that you can use for scripts.
 
 Run `deno run build` and install `/bin/goto-bin` in your system.
 
-Copy the contents of `goto.fish` to the fish config.
+Copy the contents of `goto.fish` to your fish config.
 
 ## Adding a path
 
