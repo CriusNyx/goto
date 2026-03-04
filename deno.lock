@@ -1,0 +1,83 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/assert@1": "1.0.19",
+    "jsr:@std/fs@^1.0.23": "1.0.23",
+    "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@std/path@^1.1.4": "1.1.4",
+    "npm:@commander-js/extra-typings@14": "14.0.0_commander@14.0.3",
+    "npm:@types/lodash@^4.17.24": "4.17.24",
+    "npm:commander@^14.0.3": "14.0.3",
+    "npm:lodash@^4.17.23": "4.17.23",
+    "npm:platform-folders@~0.6.1": "0.6.1"
+  },
+  "jsr": {
+    "@std/assert@1.0.19": {
+      "integrity": "eaada96ee120cb980bc47e040f82814d786fe8162ecc53c91d8df60b8755991e",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/fs@1.0.23": {
+      "integrity": "3ecbae4ce4fee03b180fa710caff36bb5adb66631c46a6460aaad49515565a37",
+      "dependencies": [
+        "jsr:@std/internal",
+        "jsr:@std/path"
+      ]
+    },
+    "@std/internal@1.0.12": {
+      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
+    },
+    "@std/path@1.1.4": {
+      "integrity": "1d2d43f39efb1b42f0b1882a25486647cb851481862dc7313390b2bb044314b5",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    }
+  },
+  "npm": {
+    "@commander-js/extra-typings@14.0.0_commander@14.0.3": {
+      "integrity": "sha512-hIn0ncNaJRLkZrxBIp5AsW/eXEHNKYQBh0aPdoUqNgD+Io3NIykQqpKFyKcuasZhicGaEZJX/JBSIkZ4e5x8Dg==",
+      "dependencies": [
+        "commander"
+      ]
+    },
+    "@types/lodash@4.17.24": {
+      "integrity": "sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ=="
+    },
+    "bindings@1.5.0": {
+      "integrity": "sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==",
+      "dependencies": [
+        "file-uri-to-path"
+      ]
+    },
+    "commander@14.0.3": {
+      "integrity": "sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw=="
+    },
+    "file-uri-to-path@1.0.0": {
+      "integrity": "sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw=="
+    },
+    "lodash@4.17.23": {
+      "integrity": "sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w=="
+    },
+    "platform-folders@0.6.1": {
+      "integrity": "sha512-AapKWmRX09cfYv1AjQ4bCeiTcYsJuSIHwLYVqI5fnMrC2Q7ksF5WrcV25RwymUE/x2gdhAMsOLBZcgK6yqLUHQ==",
+      "dependencies": [
+        "bindings"
+      ],
+      "scripts": true
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1",
+      "jsr:@std/fs@^1.0.23",
+      "jsr:@std/path@^1.1.4",
+      "npm:@commander-js/extra-typings@14",
+      "npm:@types/lodash@^4.17.24",
+      "npm:commander@^14.0.3",
+      "npm:lodash@^4.17.23",
+      "npm:platform-folders@~0.6.1"
+    ]
+  }
+}
