@@ -39,4 +39,5 @@ function pt
   pushto $argv
 end
 
+eval "$(goto-bin --environment-variables fish)"
 initialize-goto
