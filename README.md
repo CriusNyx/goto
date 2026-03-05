@@ -11,7 +11,10 @@ in bash.
 
 Run `deno run build` and install `/bin/goto-bin` in your system.
 
-Copy the contents of `goto.fish` to your fish config.
+Copy the contents of corresponding shell config file to your shell config.
+
+- `goto.fish` for fish shell.
+- `goto.sh` for bash shell.
 
 ## How to use
 
