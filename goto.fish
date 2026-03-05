@@ -1,6 +1,7 @@
 # GOTO
 function initialize-goto
-  eval "$(goto-bin --environment-variables fish)"
+  # Comment in the following line to enable goto to set environment variables from the goto table.
+  # eval "$(goto-bin --environment-variables fish)"
   complete -c goto -a $(goto-bin --completions fish)
   complete -c gt -a $(goto-bin --completions fish)
   complete -c pushto -a $(goto-bin --completions fish)

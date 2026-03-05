@@ -27,5 +27,13 @@ specified it will add the current path. ex: `goto add projects ~/Projects`
 
 `goto <name>`. Goto the specified path. ex: `goto projects`
 
-`goto <name>/[subpath]` Goto the specified subpath.: ex:
-`goto projects/MyCoolProject`
+`goto <name>/[subpath]` Goto the specified subpath.: ex: `goto projects/goto`
+
+## Environment variables
+
+In the goto shell scripts there are lines to set environment variables that are
+commented out by default. If you comment in those lines goto will generate
+environment variables for each line in the goto table.
+
+For example `goto add goto ~/Projects/goto` will generate an environment
+variable `GOTO` equivalent to `~/Projects/goto`

@@ -1,6 +1,7 @@
 # GOTO
 function initialize-goto {
-  eval "$(goto-bin --environment-variables bash)"
+  # Comment in the following line to enable goto to set environment variables from the goto table.
+  # eval "$(goto-bin --environment-variables bash)"
 }
 
 function goto {
