@@ -4,7 +4,8 @@ A utility program for managing a goto table to jump around your os.
 
 Also generates environment variables that you can use for scripts.
 
-Goto currently only works in fish shell.
+Goto current supports bash and fish. It does not currently support completions
+in bash.
 
 ## Installing.
 

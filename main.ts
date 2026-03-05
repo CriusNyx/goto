@@ -24,7 +24,7 @@ function writeOutput(path?: string) {
 // This ensures there is no output if the command isn't a goto [path] command.
 writeOutput();
 
-type SupportedShells = "fish";
+type SupportedShells = "fish" | "bash";
 
 /** Print environment variables generated from the goto table. */
 function printEnvVariables(shell: SupportedShells) {
@@ -33,6 +33,11 @@ function printEnvVariables(shell: SupportedShells) {
     case "fish":
       for (const [key, value] of Object.entries(config.directories ?? {})) {
         console.log(`set ${key.toUpperCase()} "${value}"`);
+      }
+      break;
+    case "bash":
+      for (const [key, value] of Object.entries(config.directories ?? {})) {
+        console.log(`${key.toUpperCase()}="${value}"`);
       }
       break;
     default:
