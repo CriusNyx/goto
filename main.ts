@@ -32,12 +32,12 @@ function printEnvVariables(shell: SupportedShells) {
   switch (shell) {
     case "fish":
       for (const [key, value] of Object.entries(config.directories ?? {})) {
-        console.log(`set ${key.toUpperCase()} "${value}"`);
+        console.log(`set -gx ${key.toUpperCase()} "${value}"`);
       }
       break;
     case "bash":
       for (const [key, value] of Object.entries(config.directories ?? {})) {
-        console.log(`${key.toUpperCase()}="${value}"`);
+        console.log(`export ${key.toUpperCase()}="${value}"`);
       }
       break;
     default:

@@ -37,5 +37,4 @@ function pt {
   pushto $@
 }
 
-eval "$(goto-bin --environment-variables bash)"
 initialize-goto
