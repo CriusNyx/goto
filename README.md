@@ -13,12 +13,13 @@ Copy the contents of `goto.fish` to your fish config.
 ## How to use
 
 `goto add <name> [path]`. Add the specified path to goto. If no path is
-specified it will add the current path.
+specified it will add the current path. ex: `goto add projects ~/Projects`
 
-`goto remove <name>`. Remove the path from goto.
+`goto remove <name>`. Remove the path from goto. ex: `goto remove projects`
 
 `goto list`. List all paths registered with goto.
 
-`goto <name>`. Goto the specified path.
+`goto <name>`. Goto the specified path. ex: `goto projects`
 
-`goto <name>/[subpath]` Goto the specified subpath.
+`goto <name>/[subpath]` Goto the specified subpath.: ex:
+`goto projects/MyCoolProject`
