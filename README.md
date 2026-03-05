@@ -4,6 +4,8 @@ A utility program for managing a goto table to jump around your os.
 
 Also generates environment variables that you can use for scripts.
 
+Goto currently only works in fish shell.
+
 ## Installing.
 
 Run `deno run build` and install `/bin/goto-bin` in your system.
