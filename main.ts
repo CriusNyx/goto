@@ -5,6 +5,7 @@ import chalk from "chalk";
 
 const outputFilePath = "/tmp/goto.output";
 
+/** Generate an error when the app failed to resolve a path. */
 function generateFailedToResolveError(pathInput: string) {
   const base = pathInput.split("/").shift();
 
@@ -14,6 +15,7 @@ function generateFailedToResolveError(pathInput: string) {
   );
 }
 
+/** Write to the output file. Pass in null to clear the output file. */
 function writeOutput(path?: string) {
   Deno.writeTextFileSync(outputFilePath, path ?? "");
 }
@@ -22,27 +24,48 @@ function writeOutput(path?: string) {
 // This ensures there is no output if the command isn't a goto [path] command.
 writeOutput();
 
-function printEnvTable() {
+type SupportedShells = "fish";
+
+/** Print environment variables generated from the goto table. */
+function printEnvVariables(shell: SupportedShells) {
   const config = Config.load();
-  for (const [key, value] of Object.entries(config.directories ?? {})) {
-    console.log(`set ${key.toUpperCase()} "${value}"`);
+  switch (shell) {
+    case "fish":
+      for (const [key, value] of Object.entries(config.directories ?? {})) {
+        console.log(`set ${key.toUpperCase()} "${value}"`);
+      }
+      break;
+    default:
+      "Shell not supported";
   }
 }
 
-function printCompletions() {
-  console.log(
-    `complete -c goto -a "${Object.keys(Config.load().directories ?? {}).join(" ")}"`,
-  );
+/** Print command completions for goto. */
+function printCompletions(shell: SupportedShells) {
+  const config = Config.load();
+  switch (shell) {
+    case "fish":
+      console.log(
+        [
+          "add",
+          "remove",
+          "list",
+          ...Object.keys(config.directories ?? {}),
+        ].join?.(" "),
+      );
+      break;
+  }
 }
 
 const actions = {
+  /** Default main function */
   main(...[path, opts]: CommandArgs<typeof defaultCommand>) {
     if (opts.environmentVariables) {
-      printEnvTable();
+      printEnvVariables(opts.environmentVariables as SupportedShells);
       return;
     }
     if (opts.completions) {
-      printCompletions();
+      printCompletions(opts.completions as SupportedShells);
       return;
     }
 
@@ -55,6 +78,7 @@ const actions = {
     console.log(resolved);
     writeOutput(resolved);
   },
+  /** Main function for the add command. */
   add(...[name, path]: CommandArgs<typeof addCommand>) {
     if (!path) {
       path = Deno.cwd();
@@ -63,6 +87,7 @@ const actions = {
       _.set(config, `directories.${name}`, path);
     });
   },
+  /** Default function for the remove command. */
   remove(...[name]: CommandArgs<typeof removeCommand>) {
     Config.modify((config) => {
       if (config.directories && name in config.directories) {
@@ -72,6 +97,7 @@ const actions = {
       }
     });
   },
+  /** Default function for the list command. */
   list() {
     const config = Config.load();
 
@@ -91,39 +117,46 @@ const actions = {
   },
 } as const;
 
+// Given a command determine the arguments for that command.
 type CommandArgs<CommandType extends Command<any, any, any>> =
   CommandType extends Command<infer Args, infer Opts> ? [...Args, Opts] : [];
 
+// Configure the add command.
 const addCommand = program
   .command("add <name> [path]")
   .description("Add or replace a path with goto.")
   .action(actions.add);
 
+// Configure the remove command.
 const removeCommand = program
   .command("remove <name>")
   .description("Remove a path from goto.")
   .action(actions.remove);
 
+// Configure the list command.
 program
   .command("list")
   .description("List all paths registered with goto.")
   .action(actions.list);
 
+// Configure the default command.
 const defaultCommand = program
   .name("goto")
   .description(
     "Utility program register predefined paths and jump around your operating system.",
   )
   .option(
-    "--environment-variables",
+    "--environment-variables [shell]",
     "Print fish command to register environment variables.",
   )
-  .option("--completions", "Print completions to register with fish config.")
+  .option(
+    "--completions [shell]",
+    "Print completions to register with fish config.",
+  )
   .argument("[path]", "Path to goto, starting with an entry in the goto table.")
   .action(actions.main);
 
-addCommand.processedArgs;
-
+// Run the program.
 try {
   program.parse();
 } catch (error) {

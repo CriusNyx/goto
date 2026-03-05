@@ -9,6 +9,7 @@ export interface ConfigFile {
   directories?: Partial<Record<string, string>>;
 }
 
+/** Get config folder for goto. */
 function getConfigFolder() {
   return (
     Deno.env.get("XDG_CONFIG_HOME") ??
@@ -17,9 +18,11 @@ function getConfigFolder() {
 }
 
 export const Config = {
+  /** Get file path for goto config file. */
   getFilePath() {
     return Path.join(getConfigFolder(), gotoConfigName);
   },
+  /** Load the goto config file. */
   load(): ConfigFile {
     const configFilePath = this.getFilePath();
     if (FS.existsSync(configFilePath)) {
@@ -28,12 +31,14 @@ export const Config = {
     }
     return {};
   },
+  /** Save the goto config file. */
   save(configFile: ConfigFile) {
     Deno.writeTextFileSync(
       this.getFilePath(),
       JSON.stringify(configFile, undefined, 2),
     );
   },
+  /** Modify and save the goto config file. */
   modify(mutation: (config: ConfigFile) => ConfigFile | void) {
     const oldConfig = this.load();
     const newConfig = mutation(oldConfig);
@@ -42,6 +47,7 @@ export const Config = {
     }
     this.save(oldConfig);
   },
+  /** Resolve a base path from the goto config file. */
   resolveBasePath(base: string): Option<string> {
     const config = this.load();
     const result = _.get(config?.directories, base);
@@ -50,6 +56,7 @@ export const Config = {
     }
     return None;
   },
+  /** Resolve a path from the goto config file. */
   resolvePath(path: string): Option<string> {
     const [base, ...rest] = path.split("/");
     return this.resolveBasePath(base).map((basePath) =>
